@@ -1,8 +1,8 @@
 """
 CP1404 prac 6
 languages.py (the client program)
-estimate time:5 min
-actual time:
+estimate time:15 min
+actual time: 23 min
 """
 from prac_06.programming_language import ProgrammingLanguage
 def main():

@@ -1,8 +1,8 @@
 """
 CP1404 prac 6
-programming_language.py (the class)
+programming_language.py (the class) and languages.py (the client program)
 estimate time:15 min
-actual time:
+actual time: 23 min
 """
 class ProgrammingLanguage:
     def __init__(self, name, typing, reflection, year):
