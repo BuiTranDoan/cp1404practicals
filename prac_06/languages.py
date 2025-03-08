@@ -12,3 +12,5 @@ def main():
     visual_basic = ProgrammingLanguage("Visual Basic", "Static", False, 1991)
     # Test __str__ method
     print(python)
+    # Store languages in a list
+    languages = [python, ruby, visual_basic]
