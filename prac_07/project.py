@@ -19,6 +19,7 @@ class Project:
         return f"{self.name}, start: {self.start_date.strftime('%d/%m/%Y')}, priority {self.priority}, estimate: ${self.cost_estimate:.2f}, completion: {self.completion_percentage}%"
 
     def update(self, completion_percentage=None, priority=None):
+        """Update the completion percentage and/or priority of the project."""
         if completion_percentage is not None:
             self.completion_percentage = int(completion_percentage)
         if priority is not None:
@@ -26,14 +27,17 @@ class Project:
 
     @classmethod
     def from_line(cls, line):
+        """Convert a line from the projects file into a Project instance."""
         fields = line.strip().split("\t")
         return cls(fields[0], fields[1], fields[2], fields[3], fields[4])
 
     def is_completed(self):
+        """Check if the project is completed."""
         return self.completion_percentage == 100
 
     @staticmethod
     def load_projects(filename):
+        """Load projects from a specified file and return them as a list of Project objects."""
         projects = []
         try:
             with open(filename, "r") as file:
@@ -43,11 +47,3 @@ class Project:
         except FileNotFoundError:
             print(f"File {filename} not found.")
         return projects
-
-    @staticmethod
-    def save_projects(filename, projects):
-        with open(filename, "w") as file:
-            file.write("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage\n")
-            for project in projects:
-                file.write(f"{project.name}\t{project.start_date.strftime('%d/%m/%Y')}\t"
-                           f"{project.priority}\t{project.cost_estimate}\t{project.completion_percentage}\n")

@@ -7,6 +7,7 @@ import datetime
 from project import Project
 
 def main():
+    """Main function that displays the menu and handles user input."""
     projects = Project.load_projects("projects.txt")
     print("Welcome to Pythonic Project Management")
     print(f"Loaded {len(projects)} projects from projects.txt")
@@ -22,7 +23,7 @@ def main():
 
         elif choice == 'S':
             filename = input("Enter filename to save: ")
-            Project.save_projects(filename, projects)
+            save_projects(filename, projects)
             print(f"Projects saved to {filename}")
 
         elif choice == 'D':
@@ -46,6 +47,7 @@ def main():
             break
 
 def display_projects(projects):
+    """Display the projects, separating incomplete and completed projects, sorted by priority."""
     incomplete_projects = [project for project in projects if not project.is_completed()]
     completed_projects = [project for project in projects if project.is_completed()]
 
@@ -61,9 +63,11 @@ def display_projects(projects):
         print(f"  {project}")
 
 def priority_sort_key(project):
+    """Helper function to get the priority key for sorting."""
     return project.priority
 
 def filter_projects_by_date(projects, date):
+    """Filter and display projects that start after the specified date."""
     filter_date = datetime.datetime.strptime(date, "%d/%m/%Y").date()
     filtered_projects = [project for project in projects if project.start_date >= filter_date]
 
@@ -72,9 +76,11 @@ def filter_projects_by_date(projects, date):
         print(f"{project}")
 
 def project_start_date_key(project):
+    """Helper function to get the start date key for sorting."""
     return project.start_date
 
 def add_new_project(projects):
+    """Prompt the user to input details for a new project and add it to the list."""
     print("Let's add a new project")
     name = input("Name: ")
     start_date = input("Start date (dd/mm/yy): ")
