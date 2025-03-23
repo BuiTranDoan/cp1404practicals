@@ -17,11 +17,14 @@ def main():
     print("\nSorted guitars (oldest to newest):")
     display_guitars(guitars)
 
-    guitars.extend(get_user_guitars())    # Allow user to enter new guitars
+    new_guitars = get_user_guitars()    # Allow user to enter new guitars
 
-
-    save_guitars(FILENAME, guitars)    # Save updated list to file
-    print("\nUpdated guitar list saved to file.")
+    if new_guitars:
+        guitars.extend(new_guitars)
+        save_guitars(FILENAME, guitars)
+        print("\nUpdated guitar list saved to file.")
+    else:
+        print("\nNo new guitars added. File not updated.")
 
 def load_guitars(filename):
     """Read guitars from a file and return a list of Guitar objects."""
