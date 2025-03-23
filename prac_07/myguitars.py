@@ -13,6 +13,10 @@ def main():
     print("Guitars from file:")
     display_guitars(guitars)
 
+    guitars.sort()    # Sort guitars by year
+    print("\nSorted guitars (oldest to newest):")
+    display_guitars(guitars)
+
 def load_guitars(filename):
     """Read guitars from a file and return a list of Guitar objects."""
     guitars = []
