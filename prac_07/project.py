@@ -1,7 +1,7 @@
 """
 Prac 07 Project Management Program
-Estimate time: 2 Hours
-Actual time:
+Estimate time: 2 Hour
+Actual time: 2 and a half hour
 """
 import datetime
 
