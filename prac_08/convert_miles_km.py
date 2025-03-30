@@ -1,37 +1,35 @@
 from kivy.app import App
 from kivy.lang import Builder
-from kivy.properties import StringProperty
-
 MILES_TO_KM_CONVERSION = 1.60934
 
 
 class MilesToKmApp(App):
-    result = StringProperty("0.0 km")  # This will bind to the result label
-
     def build(self):
         """ Build the Kivy app from the kv file """
         self.title = "Miles to Kilometers Converter"
         return Builder.load_file('convert_miles_km.kv')
 
-    def handle_conversion(self, miles):
+    def handle_conversion(self):
         """ Convert miles to kilometers and update the result label """
-        try:
-            miles = float(miles)
-            km = miles * MILES_TO_KM_CONVERSION
-            self.result = f"{km:.2f} km"
-        except ValueError:
-            self.result = "0.0 km"  # Handle invalid input
+        convert_miles = self.get_validated_miles()
+        miles_to_km = convert_miles * MILES_TO_KM_CONVERSION
+        self.root.ids.output_label.text = str(miles_to_km) # Handle invalid input
 
-    def handle_increment(self, increment):
+    def handle_increment(self, change):
         """ Increment or decrement the miles value by 1 """
+        value = self.get_validated_miles() + change
+        self.root.ids.input_miles.text = str(value)
+        self.handle_conversion()
+
+    def get_validated_miles(self):
+        """
+        get text input from text entry widget, convert to float
+        :return: 0 if error, float version of text if valid
+        """
         try:
-            miles = float(self.root.ids.miles_input.text)
+            value = float(self.root.ids.input_miles.text)
+            return value
         except ValueError:
-            miles = 0
-        miles += increment
-        self.root.ids.miles_input.text = str(miles)
-        self.handle_conversion(miles)
+            return 0
 
-
-if __name__ == '__main__':
-    MilesToKmApp().run()
+MilesToKmApp().run()
