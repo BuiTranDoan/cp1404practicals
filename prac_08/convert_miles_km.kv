@@ -1,0 +1,37 @@
+BoxLayout:
+    orientation: 'vertical'  # Arrange elements vertically
+    spacing: 10
+
+    # Input box and buttons arranged horizontally
+    BoxLayout:
+        orientation: 'horizontal'  # Arrange horizontally
+        TextInput:
+            id: miles_input
+            text: '0'
+            font_size: 32
+            multiline: False
+            input_filter: 'float'  # Only allow floating point numbers
+        BoxLayout:
+            orientation: 'vertical'  # Stack buttons vertically
+            spacing: 10
+
+            Button:
+                text: 'Up'
+                font_size: 32
+                on_press: app.handle_increment(1)
+
+            Button:
+                text: 'Down'
+                font_size: 32
+                on_press: app.handle_increment(-1)
+
+    Button:
+        text: 'Convert'
+        font_size: 32
+        on_press: app.handle_conversion(miles_input.text)
+
+    Label:
+        id: result_label
+        text: '0.0 km'
+        font_size: 32
+        color: (1, 1, 0, 1)  # Yellow color for result text
