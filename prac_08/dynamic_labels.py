@@ -35,5 +35,4 @@ class DynamicLabelsApp(App):
         """Clear all widgets that are children of the "labels_box" layout widget."""
         self.root.ids.labels_box.clear_widgets()
 
-
 DynamicLabelsApp().run()
