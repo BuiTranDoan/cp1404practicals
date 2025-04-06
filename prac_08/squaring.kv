@@ -1,0 +1,34 @@
+BoxLayout:
+    orientation: 'vertical'  # Arrange the sections vertically
+
+    # Top section containing TextInput, Button, and Label arranged horizontally
+    BoxLayout:
+        orientation: 'horizontal'  # Arrange widgets horizontally in the top section
+        spacing: 10
+
+        TextInput:
+            id: input_number
+            text: '7'  # Default number to square
+            font_size: 48
+            multiline: False
+            input_filter: 'int'  # Only allow integer input
+
+        Button:
+            text: 'Square'
+            font_size: 48
+            # Call the handle_calculate function with the input value when the button is pressed
+            on_press: app.handle_calculate(input_number.text)
+
+        Label:
+            id: output_label
+            font_size: 48
+            color: (1, 0, 1, 1)  # Pink color for the label text
+
+    # Bottom section containing the instruction label
+    BoxLayout:
+        size_hint_y: None
+        height: 50
+        Label:
+            text: "Enter a number and press 'Square'"  # Instructions for the user
+            font_size: 24
+            color: (1, 1, 1, 1)  # White text for the instruction
