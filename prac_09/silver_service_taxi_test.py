@@ -6,7 +6,7 @@ def main():
     fare = taxi.get_fare()
     print(taxi)
     print(f"Fare: ${fare:.2f}")
-    assert fare == 48.8, f"Expected $48.80, got ${fare:.2f}"
+    assert fare == 44.28, f"Expected $44.28, got ${fare:.2f}"
 
 if __name__ == "__main__":
     main()

@@ -12,8 +12,8 @@ class SilverServiceTaxi(Taxi):
         self.price_per_km *= fanciness  # Customize fare per km
 
     def get_fare(self):
-        """Return the fare including flagfall, rounded to nearest 10c."""
-        return round(super().get_fare() + self.flagfall, 1)
+        """Return the price for the taxi trip, rounded to nearest 10c."""
+        return round(self.price_per_km * self.current_fare_distance, 1)
 
     def __str__(self):
         """Return string representation of the taxi with flagfall."""
